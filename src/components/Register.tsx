@@ -56,7 +56,7 @@ export const Register = () => {
                     <option value="Supervisor">Supervisor</option>
                     <option value="2nd Assistant">2nd Assistant</option>
                     <option value="1st Assistant">1st Assistant</option>
-                    <option value="Patrao">Patrao</option>
+                    <option value="Patra">Patrao</option>
                 </select>
             </div>
             <div className={styles.form}>
