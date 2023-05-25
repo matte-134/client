@@ -1,25 +1,44 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Login } from './components/Login';
+import { AuthContext, AuthContextType } from './context/AuthContext';
+import { Users } from './components/Users';
+import { IdContext, IdContextType } from './context/IdContext';
+import { Dashboard } from './components/Dashboard';
+import { Register } from './components/Register';
+
+
 
 function App() {
+
+const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+const [userId, setUserId] = React.useState("")  
+
+const authContextValue: AuthContextType = {
+    isLoggedIn,
+    setIsLoggedIn,
+  }
+const idContextValue: IdContextType = {
+    userId,
+    setUserId,
+}
   return (
+    <AuthContext.Provider value={authContextValue}>
+      <IdContext.Provider value={idContextValue}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Register />
+      {!isLoggedIn ? <Login /> : null}
+      {isLoggedIn ?
+      <> 
+      {/* <Users /> */}
+      <Dashboard /> 
+      </>
+      : null}
     </div>
+    </IdContext.Provider>
+    </AuthContext.Provider>
+    
   );
 }
 
